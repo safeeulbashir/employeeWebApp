@@ -19,33 +19,46 @@
 	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
 	crossorigin="anonymous">
 </head>
-
+<script type="text/javascript">
+	function submitForm() {
+		var userID = document.getElementById('userID').value;
+		console.log(userName + ' ' + password);
+		if(userID=='!) {
+			alert('please enter user id');
+			return;
+		}
+		
+		document.getElementById('employeeDisplayForm').submit();
+	}
+	
+</script>
 <div class="container">
 	<div class="row">
 		<div class="col-md-offset-5 col-md-3">
 			<div class="form-login">
-				<h4>
-				</h4>
+				<h4></h4>
 				<h4>Display Employee</h4>
-				<form id='employeeDisplayForm' action="<%=request.getContextPath()%>/EmployeeRequestHandler"
-					method="post">
-					<input type="hidden" name="function" value="display">
-					<input type="text" id="userName" name="userID"
+				<form id='employeeDisplayForm' action="EmployeeRequestHandler"
+					method="get">
+					<input type="hidden" name="function" value="display"> <input
+						type="text" id="userName" name="userID"
 						class="form-control input-sm chat-input" placeholder="userID" />
 					<div class="wrapper">
-						<button type="button" class="btn btn-default"
-							>Search</button>
+						<input type="submit" class="btn btn-default" value="Search">
 					</div>
-				</form>
 			</div>
-
+			</form>
 		</div>
+
 	</div>
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-		integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-		crossorigin="anonymous"></script>
-		
-		
+</div>
+${requestScope.message}
+
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+	crossorigin="anonymous"></script>
+
+
 </body>
 </html>

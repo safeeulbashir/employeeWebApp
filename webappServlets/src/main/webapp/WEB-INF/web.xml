@@ -62,5 +62,8 @@
 			<taglib-location>tlds/fmt.tld</taglib-location>
 		</taglib>
 	</jsp-config>
+	<welcome-file-list>
+		<welcome-file>login</welcome-file>
+	</welcome-file-list>
 
 </web-app>

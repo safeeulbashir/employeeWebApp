@@ -36,7 +36,7 @@ public class EmployeeRequestHandler extends HttpServlet {
 			EmployeeServices employeeServices=new EmployeeServices();
 			EmployeeInformations employeeInformations= employeeServices.getEmployeeInformation(employeeID);
 			request.setAttribute("employeeInformation", employeeInformations);
-			//RequestDispatcher requestDispatcher=request.getRequestDispatcher("pages/viewEmployee.jsp");
+			request.setAttribute("message", employeeInformations.getEmpName());
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("pages/view.jsp");
 			requestDispatcher.forward(request, response);
 			

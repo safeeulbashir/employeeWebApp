@@ -1,6 +1,7 @@
 package implementations;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,6 +12,16 @@ import webappmodels.Employee;
 public class EmployeeDao implements EmployeeDaoInterface {
 	@Override
 	public Employee getEmployee(int empId) {
+	/*	String url = "jdbc:mysql://localhost:3306/employees?autoReconnect=true&useSSL=false";
+		String user = "root";
+		String password = "Ajke4dikekeun@i";
+
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+*/
 		try (Connection connection = JdbcConnectionFactory.getConnection();) {
 			String SQL = "Select * from EMPLOYEES WHERE emp_no=?";
 			PreparedStatement preparedStatement = connection.prepareStatement(SQL);
