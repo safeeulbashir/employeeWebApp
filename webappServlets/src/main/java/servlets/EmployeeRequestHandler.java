@@ -1,6 +1,8 @@
 package servlets;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -37,15 +39,46 @@ public class EmployeeRequestHandler extends HttpServlet {
 			EmployeeServices employeeServices=new EmployeeServices();
 			EmployeeInformations employeeInformations= employeeServices.getEmployeeInformation(employeeID);
 			request.setAttribute("employeeInformation", employeeInformations);
-			request.setAttribute("message", employeeInformations.getEmpName());
+			//request.setAttribute("message", employeeInformations.getEmpName());
 			request.setAttribute("product", new Product("101", "Computer", 1000));
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("pages/view.jsp");
 			requestDispatcher.forward(request, response);
 			
 		}
-		else if(request.getParameter("function").equals("update"))
+		else if(request.getParameter("function").equals("displayForUpdate"))
 		{
-			
+			Integer employeeID=Integer.parseInt(request.getParameter("userID"));
+			EmployeeServices employeeServices=new EmployeeServices();
+			EmployeeInformations employeeInformations= employeeServices.getEmployeeInformation(employeeID);
+			request.setAttribute("employeeInformation", employeeInformations);
+			request.setAttribute("message", "Message from Heaven");
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("pages/update.jsp");
+			requestDispatcher.forward(request, response);
+		}
+		else if(request.getParameter("function").equals("updateRequest"))
+		{
+			EmployeeInformations employeeInformations= new EmployeeInformations();
+			employeeInformations.setEmpNo(Integer.parseInt((String)request.getParameter("userUpdateID")));
+			employeeInformations.setFirstName((String)request.getParameter("userFirstName"));
+			employeeInformations.setLastName((String)request.getParameter("userLastName"));
+			SimpleDateFormat sdf1 = new SimpleDateFormat("dd-MM-yyyy");
+			String joiningDate=(String) request.getParameter("userJoiningDate");
+			java.util.Date date = new java.util.Date();
+			try {
+				date = sdf1.parse(joiningDate);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			java.sql.Date sqlStartDate = new java.sql.Date(date.getTime());
+			employeeInformations.setJoinDate(sqlStartDate);
+			employeeInformations.setSalary(Integer.parseInt((String)request.getParameter("userSalary")));
+			EmployeeServices employeeServices= new EmployeeServices();
+			employeeServices.updateEmployee(employeeInformations);
+			request.setAttribute("message", "Update Successfull");
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("pages/update.jsp");
+			requestDispatcher.forward(request, response);
+
 		}
 	}
 
@@ -54,7 +87,6 @@ public class EmployeeRequestHandler extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
+			}
 
 }

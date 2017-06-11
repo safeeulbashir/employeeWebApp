@@ -53,28 +53,31 @@
 	</div>
 </div>
 <table class="table table-bordered">
-	<thead>
-		<tr>
-			<th>ID</th>
-			<th>Name</th>
-			<th>Joining Date</th>
-			<th>Department</th>
-			<th>Salary</th>
-			<th>Gross Salary</th>
+	<tr>
+		<td>Employee ID</td>
+		<td>${requestScope.employeeInformation.getEmpNo()}</td>
 
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td>${requestScope.employeeInformation.getEmpNo()}</td>
-			<td>${requestScope.employeeInformation.getEmpName()}</td>
-			<td>${requestScope.employeeInformation.getJoinDate()}</td>
-			<td>${requestScope.employeeInformation.getDeptartmentName()}</td>
-			<td>${requestScope.employeeInformation.getSalary()}</td>
-			<td>${requestScope.employeeInformation.calculateGrossSalary()}</td>
-		</tr>
-	</tbody>
+	</tr>
+	<tr>
+		<td>First Name</td>
+		<td>${requestScope.employeeInformation.getFirstName()}</td>
+
+	</tr>
+	<tr>
+		<td>Last Name</td>
+		<td>${requestScope.employeeInformation.getLastName()}</td>
+
+	</tr>
+	<tr>
+		<td>Department Name</td>
+		<td>${requestScope.employeeInformation.getDeptartmentName()}</td>
+	</tr>
+	<tr>
+		<td>Salary</td>
+		<td>${requestScope.employeeInformation.getSalary()}</td>
+	</tr>
 </table>
+
 
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"

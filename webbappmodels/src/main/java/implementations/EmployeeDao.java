@@ -43,4 +43,22 @@ public class EmployeeDao implements EmployeeDaoInterface {
 		}
 		return null;
 	}
+
+	@Override
+	public void updateEmployee(Employee employee) {
+		
+		// TODO Auto-generated method stub
+		try (Connection connection = JdbcConnectionFactory.getConnection();) {
+			String SQL = "UPDATE employees SET first_name=?, last_name=? where emp_no=?";
+			PreparedStatement preparedStatement = connection.prepareStatement(SQL);
+			preparedStatement.setString(1, employee.getFirstName());
+			preparedStatement.setString(2, employee.getLastName());
+			preparedStatement.setInt(3, employee.getEmployeeNo());
+			preparedStatement.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }
