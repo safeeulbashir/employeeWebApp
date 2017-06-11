@@ -53,9 +53,9 @@ public class LoginServlets extends HttpServlet {
 		
 		UserService userHelper = new UserServiceImpl();
 		boolean validUser = userHelper.validateUser(user, getServletConfig());
-		RequestDispatcher homeDisp1 = request.getRequestDispatcher("pages/home.jsp");
+		/*RequestDispatcher homeDisp1 = request.getRequestDispatcher("pages/home.jsp");
 		homeDisp1.forward(request, response);
-		if (validUser) {
+		*/if (validUser) {
 			HttpSession session = request.getSession(true);
 			session.setAttribute("userInfo", user);
 			
@@ -63,7 +63,7 @@ public class LoginServlets extends HttpServlet {
 			homeDisp.forward(request, response);
 		} else {
 			request.setAttribute("message", "Invalid User");
-			RequestDispatcher loginDisp = request.getRequestDispatcher("Login");
+			RequestDispatcher loginDisp = request.getRequestDispatcher("login");
 			loginDisp.forward(request, response);
 		}
 
