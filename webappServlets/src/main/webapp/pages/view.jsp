@@ -1,3 +1,4 @@
+<%@page import="webappservice.EmployeeServices"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ page isELIgnored="false"%>
@@ -20,17 +21,15 @@
 	crossorigin="anonymous">
 </head>
 <script type="text/javascript">
-	function submitForm() {
+	function validateform() {
 		var userID = document.getElementById('userID').value;
-		console.log(userName + ' ' + password);
-		if(userID=='!) {
+		if (userID == '') {
 			alert('please enter user id');
-			return;
+			return false;
 		}
-		
+
 		document.getElementById('employeeDisplayForm').submit();
 	}
-	
 </script>
 <div class="container">
 	<div class="row">
@@ -39,12 +38,13 @@
 				<h4></h4>
 				<h4>Display Employee</h4>
 				<form id='employeeDisplayForm' action="EmployeeRequestHandler"
-					method="get">
+					method="get" onsubmit="return validateform()">
 					<input type="hidden" name="function" value="display"> <input
-						type="text" id="userName" name="userID"
+						type="text" id="userID" name="userID"
 						class="form-control input-sm chat-input" placeholder="userID" />
 					<div class="wrapper">
-						<input type="submit" class="btn btn-default" value="Search">
+						<input type="submit" id="submit" class="btn btn-default"
+							value="Search">
 					</div>
 			</div>
 			</form>
@@ -52,7 +52,29 @@
 
 	</div>
 </div>
-${requestScope.message}
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Name</th>
+			<th>Joining Date</th>
+			<th>Department</th>
+			<th>Salary</th>
+			<th>Gross Salary</th>
+
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>${requestScope.employeeInformation.getEmpNo()}</td>
+			<td>${requestScope.employeeInformation.getEmpName()}</td>
+			<td>${requestScope.employeeInformation.getJoinDate()}</td>
+			<td>${requestScope.employeeInformation.getDeptartmentName()}</td>
+			<td>${requestScope.employeeInformation.getSalary()}</td>
+			<td>${requestScope.employeeInformation.calculateGrossSalary()}</td>
+		</tr>
+	</tbody>
+</table>
 
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"

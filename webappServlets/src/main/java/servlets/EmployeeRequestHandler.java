@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import webappmodels.Product;
 import webappservice.EmployeeInformations;
 import webappservice.EmployeeServices;
 
@@ -37,6 +38,7 @@ public class EmployeeRequestHandler extends HttpServlet {
 			EmployeeInformations employeeInformations= employeeServices.getEmployeeInformation(employeeID);
 			request.setAttribute("employeeInformation", employeeInformations);
 			request.setAttribute("message", employeeInformations.getEmpName());
+			request.setAttribute("product", new Product("101", "Computer", 1000));
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("pages/view.jsp");
 			requestDispatcher.forward(request, response);
 			
