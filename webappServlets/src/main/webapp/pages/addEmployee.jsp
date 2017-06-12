@@ -22,6 +22,7 @@
 <!-- Latest compiled JavaScript -->
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.js"></script>
 <!-- Custom CSS -->
 <style>
 body {
@@ -40,7 +41,28 @@ body {
 </head>
 
 <body>
+<script type="text/javascript">
+//Wait for the DOM to be ready
+$(document).ready(function () {
 
+    $('#employeeAddForm').validate({ // initialize the plugin
+        rules: {
+        	userFirstName: {
+                required: true,
+               
+            },
+            userLastName: {
+                required: true,
+                minlength: 5
+            }
+            gender:{
+            	required: true
+            	
+            }
+        }
+    });
+
+});</script>
 	<!-- Navigation -->
 	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 		<div class="container">
@@ -97,7 +119,7 @@ body {
 	<div class="row">
 		<div class="col-md-offset-5 col-md-3">
 			<div class="form-login">
-				<form id='employeeAddForm' action="EmployeeRequestHandler"
+				<form id='employeeAddForm' name='employeeAddForm' action="EmployeeRequestHandler"
 					method="get" style="display: 'none';"
 					onsubmit="return validateUpdateform()">
 					<input type="hidden" name="function" value="addRequest">
