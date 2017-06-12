@@ -5,6 +5,7 @@
 			<ul>
 				<li><a href="<%= request.getContextPath() %>/RequestHandler?requestAction=VIEW_EMPLOYEE">View Employee</a></li>
 				<li><a href="<%= request.getContextPath() %>/RequestHandler?requestAction=UPDATE_EMPLOYEE">Update Employee</a></li>
+				<li><a href="<%= request.getContextPath() %>/RequestHandler?requestAction=GENERATE_EMPLOYEE">Add Employee</a></li>
 			</ul></li>
 	</ul>
 </div>

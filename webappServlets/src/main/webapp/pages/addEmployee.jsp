@@ -19,6 +19,7 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
 	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
 	crossorigin="anonymous">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <script type="text/javascript">
 	function validateform() {
@@ -29,7 +30,7 @@
 		}
 		document.getElementById('employeeDisplayForm').submit();
 		/* document.getElementById("EmployeeDisplayer").setAttribute("style", "display: block;"); */
-		
+
 	}
 	function validateUpdateform() {
 		if (document.getElementById('userFirstName').value == ''
@@ -44,15 +45,13 @@
 		<div class="col-md-offset-5 col-md-3">
 			<div class="form-login">
 				<h4></h4>
-				<h4>Display Employee</h4>
-				<form id='employeeDisplayForm' action="EmployeeRequestHandler"
-					method="get" onsubmit="return validateform()">
-					<input type="hidden" name="function" value="displayForUpdate">
-					<input type="text" id="userID" name="userID"
-						class="form-control input-sm chat-input" placeholder="userID" />
+				<h4>Generate EmployeeID</h4>
+				<form id='generateEmployeeID' action="EmployeeRequestHandler"
+					method="get">
+					<input type="hidden" name="function" value="generateEmployeeID">
 					<div class="wrapper">
 						<input type="submit" id="submit" class="btn btn-default"
-							value="Search">
+							value="Generate Employee ID">
 					</div>
 			</div>
 			</form>
@@ -64,18 +63,17 @@
 	<div class="row">
 		<div class="col-md-offset-5 col-md-3">
 			<div class="form-login">
-				<form id='employeeUpdateForm' action="EmployeeRequestHandler"
+				<form id='employeeAddForm' action="EmployeeRequestHandler"
 					method="get" style="display: 'none';"
 					onsubmit="return validateUpdateform()">
-					<input type="hidden" name="function" value="updateRequest">
+					<input type="hidden" name="function" value="addRequest">
 					<table>
 						<tr>
 							<td class="span4">Employee ID:</td>
-							<td class="span3">${requestScope.employeeInformation.getEmpNo()}
-								<input type="hidden" id="userUpdateID" name="userUpdateID"
-								class="form-control input-sm chat-input"
-								placeholder="User ID"
-								value=${requestScope.employeeInformation.getEmpNo()}>
+							<td class="span3">${requestScope.employeeId}<input
+								type="hidden" id="userUpdateID" name="userUpdateID"
+								class="form-control input-sm chat-input" placeholder="User ID"
+								value=${requestScope.employeeId}>
 							</td>
 
 						</tr>
@@ -83,44 +81,37 @@
 							<td>First Name:</td>
 							<td class="span4"><input type="text" id="userFirstName"
 								name="userFirstName" class="form-control input-sm chat-input"
-								placeholder="First Name"
-								value=${requestScope.employeeInformation.getFirstName() } /></td>
+								placeholder="First Name" value='' /></td>
 
 						</tr>
 						<tr>
 							<td>Last Name:</td>
 							<td><input type="text" id="userL" name="userLastName"
-								class="form-control input-sm chat-input"
-								placeholder="Last Name"
-								value=${requestScope.employeeInformation.getLastName() } /></td>
+								class="form-control input-sm chat-input" placeholder="Last Name"
+								value='' /></td>
 
 						</tr>
 						<tr>
-							<td>Department Name:</td>
-							<td>${requestScope.employeeInformation.getDeptartmentName()}<input
-								type="hidden" id="userDepartment" name="userDepartment"
+							<td>Date of Birth:</td>
+							<td><input type="text" id="dateOfBirth" name="dateOfBirth"
 								class="form-control input-sm chat-input"
-								placeholder="userDepartment"
-								value=${requestScope.employeeInformation.getDeptartmentName() } /></td>
+								placeholder="Date of Birth" value='' /></td>
 						</tr>
 						<tr>
-							<td>Salary</td>
-							<td><input type="text" id="userSalary" name="userSalary"
-								class="form-control input-sm chat-input"
-								placeholder="Salary"
-								value=${requestScope.employeeInformation.getSalary() } /></td>
+							<td>Date of Hire</td>
+							<td><input type="text" id="hireDate" name="hireDate"
+								class="form-control input-sm chat-input" placeholder="Hiring Date"
+								value='' /></td>
 						</tr>
 						<tr>
-							<td>Joining Date</td>
-							<td>${requestScope.employeeInformation.getJoinDate() }<input
-								type="hidden" id="userJoiningDate" name="userJoiningDate"
-								class="form-control input-sm chat-input"
-								placeholder="Joining Date"
-								value=${requestScope.employeeInformation.getJoinDate()} /></td>
+							<td>Gender</td>
+							<td><input type="text" id="gender" name="gender"
+								class="form-control input-sm chat-input" placeholder="M/F"
+								value='' /></td>
 						</tr>
 						<tr colspan="2">
 							<td><input type="submit" id="submit" class="btn btn-default"
-								value="Update"></td>
+								value="Add Employee"></td>
 						</tr>
 					</table>
 				</form>
@@ -129,7 +120,7 @@
 
 		</div>
 	</div>
-	
+
 	<script
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
 		integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"

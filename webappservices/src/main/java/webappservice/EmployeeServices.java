@@ -39,4 +39,16 @@ public class EmployeeServices {
 		salariesDao.updateSalary(salaries);
 	}
 
+	public Integer getNewEmployeeID() {
+		// TODO Auto-generated method stub
+		
+		return employeeDao.getNewEmployeeID();
+	}
+
+	public void addEmployee(Employee employee) {
+		// TODO Auto-generated method stub
+		System.out.println("Added");
+		employeeDao.addEmployee(employee);
+	}
+
 }

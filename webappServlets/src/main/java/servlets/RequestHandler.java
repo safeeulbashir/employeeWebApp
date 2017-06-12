@@ -38,7 +38,10 @@ public class RequestHandler extends HttpServlet {
 		} else if (requestType.equals("UPDATE_EMPLOYEE")) {
 			RequestDispatcher employeeDisp = request.getRequestDispatcher("pages/update.jsp");
 			employeeDisp.forward(request, response);
-
+		}
+		else if (requestType.equals("GENERATE_EMPLOYEE")) {
+			RequestDispatcher employeeDisp = request.getRequestDispatcher("pages/addEmployee.jsp");
+			employeeDisp.forward(request, response);
 		}
 	}
 
