@@ -59,7 +59,7 @@ public class LoginServlets extends HttpServlet {
 			HttpSession session = request.getSession(true);
 			session.setAttribute("userInfo", user);
 			
-			RequestDispatcher homeDisp = request.getRequestDispatcher("pages/home.jsp");
+			RequestDispatcher homeDisp = request.getRequestDispatcher("pages/index.jsp");
 			homeDisp.forward(request, response);
 		} else {
 			request.setAttribute("message", "Invalid User");
