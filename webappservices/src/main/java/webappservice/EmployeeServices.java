@@ -21,8 +21,20 @@ public class EmployeeServices {
 		employeeInformations.setLastName(employeeDao.getEmployee(empID).getLastName());
 		employeeInformations.setEmpNo(employeeDao.getEmployee(empID).getEmployeeNo());
 		employeeInformations.setJoinDate(employeeDao.getEmployee(empID).getHireDate());
-		employeeInformations.setDeptartmentName(departmentDao.getDepartment(empID).getDepName());
-		employeeInformations.setSalary(salariesDao.getSalaries(empID).getSalary());
+
+		try {
+			String deptName = departmentDao.getDepartment(empID).getDepName();
+			employeeInformations.setDeptartmentName(deptName);
+		} catch (NullPointerException nullPointerException) {
+			employeeInformations.setDeptartmentName("N/A");
+		}
+		try {
+			Integer salary = salariesDao.getSalaries(empID).getSalary();
+			employeeInformations.setSalary(salary);
+		} catch (NullPointerException nullPointerException) {
+			// TODO: handle exception
+			employeeInformations.setSalary(65000);
+		}
 		return employeeInformations;
 	}
 
@@ -31,17 +43,23 @@ public class EmployeeServices {
 		// TODO Auto-generated method stub
 
 		Employee employee = employeeDao.getEmployee(employeeInformations.getEmpNo());
-		Salaries salaries = salariesDao.getSalaries(employeeInformations.getEmpNo());
 		employee.setFirstName(employeeInformations.getFirstName());
 		employee.setLastName(employeeInformations.getLastName());
 		employeeDao.updateEmployee(employee);
-		salaries.setSalary(employeeInformations.getSalary());
-		salariesDao.updateSalary(salaries);
+		try{
+			Salaries salaries = salariesDao.getSalaries(employeeInformations.getEmpNo());
+			salaries.setSalary(employeeInformations.getSalary());
+			salariesDao.updateSalary(salaries);	
+		}catch (NullPointerException nullPointerException) {
+			// TODO: handle exception
+			System.out.println("Null Pointer Exception Occured.");
+		}
+		
 	}
 
 	public Integer getNewEmployeeID() {
 		// TODO Auto-generated method stub
-		
+
 		return employeeDao.getNewEmployeeID();
 	}
 
