@@ -68,8 +68,19 @@
         </div>
         <!-- /.container -->
     </nav>
-
+<script type="text/javascript">
+function addElement()
+{
+	document.getElementById("dynamicContent").innerHTML=document.getElementById("dynamicContent").innerHTML+"Added Dynamic Content";	
+}
+</script>
     <!-- Page Content -->
+    <div class="wrapper">
+						<input type="button" id="submit" class="btn btn-default"
+							value="Add Content" onclick="addElement()">
+					</div>
+    <div class="container" id="dynamicContent">
+    </div>
 
 </body>
 </html>
